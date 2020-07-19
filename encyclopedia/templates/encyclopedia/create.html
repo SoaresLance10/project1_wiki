@@ -1,0 +1,31 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Entry
+{% endblock %}
+
+{% block body %}
+    <h1>Create new Page</h1><br><br>
+
+    <form action="{% url 'create' %}" method="post">
+    	{% csrf_token %}
+		<div class="container"> 
+			<br>
+            <label><b>Topic:</b></label><br>
+            <input type="text" placeholder="Enter Topic Name" name="topic" value={{topic}}><br><br> 
+            {% if topic == '' %}
+				<input type="hidden" name="edit" value="no">
+			{% else %}
+				<input type="hidden" name="edit" value="yes">
+            {% endif %}		
+            
+            <label><b>Content:</b></label><br>.
+            <textarea rows = "5" cols = "60" name = "content">{{ content }}</textarea><br>
+  			<p></p>
+            <button type="submit">Submit</button> 
+            <br>
+            <br>
+        </div> 
+	</form>
+
+{% endblock %}
